@@ -1,17 +1,18 @@
 #ifndef INTSET_H /* Prevent multiple inclusion... */
 #define INTSET_H
 
-struct node {
-    int data;
-    node *next;
-}
+struct node
+{
+  int data;
+  node *next;
+};
 
-class Intset {
+class Intset
+{
+private:
+  node *head;
 
- private: 
-  int *head;
-
- public:
+public:
   Intset();
   ~Intset();
   bool find(int key);
