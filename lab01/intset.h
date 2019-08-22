@@ -1,11 +1,15 @@
 #ifndef INTSET_H /* Prevent multiple inclusion... */
 #define INTSET_H
 
+struct node {
+    int data;
+    node *next;
+}
+
 class Intset {
 
  private: 
-  int size, allocated;
-  int *A;
+  int *head;
 
  public:
   Intset();
