@@ -4,10 +4,10 @@
 
 using namespace std;
 
-//initializes the head to nullptr
+//initializes the head to NULL
 Intset::Intset()
 {
-	head = nullptr;
+	head = NULL;
 }
 
 //deletes all nodes in the list
@@ -29,19 +29,20 @@ Intset::~Intset()
 bool Intset::find(int key)
 {
 	node *temp = head;
-
-	while (temp->next)
-	{
-		if (temp->data == key)
+	if (head) {
+		while (temp->next)
 		{
-			return true;
-		}
-		else
-		{
+			if (temp->data == key)
+			{
+				return true;
+			}
 			temp = temp->next;
 		}
+		return false;
 	}
-	return false;
+	else {
+		return false;
+	}
 }
 
 /* Inserts a new key.  It is an error if key is already in the set. */
@@ -52,31 +53,34 @@ void Intset::insert(int key)
 	if (head)
 	{
 		node *temp = head, *newNode = new node;
+		newNode->data = key;
+		newNode->next = NULL;
 
-		while (temp->next)
+		//if the key is less than the head replace it
+		if (key < head->data)
 		{
-			//if the key is less than the head replace it
-			if (key < head->data)
+			newNode->next = head;
+			head = newNode;
+		}
+		else {
+			while (temp)
 			{
-				newNode->next = head;
-				head = newNode;
-				break;
+				//if the key is greater than the list
+				if (!temp->next)
+				{
+					temp->next = newNode;
+					break;
+				}
+				//if the key is in the middle of the list replace it
+				if (temp->data < key && key < temp->next->data)
+				{
+					newNode->next = temp->next;
+					temp->next = newNode;
+					break;
+				}
+				//iterator
+				temp = temp->next;
 			}
-			//if the key is in the middle of the list replace it
-			if (temp->data < key && key < temp->next->data)
-			{
-				newNode->next = temp->next;
-				temp->next = newNode;
-				break;
-			}
-			//if the key is greater than the list
-			if (!temp->next)
-			{
-				temp->next = newNode;
-				break;
-			}
-			//iterator
-			temp = temp->next;
 		}
 	}
 	//if the list doesn't exist create it
@@ -84,7 +88,7 @@ void Intset::insert(int key)
 	{
 		head = new node;
 		head->data = key;
-		head->next = nullptr;
+		head->next = NULL;
 	}
 }
 
@@ -126,9 +130,10 @@ void Intset::print(void)
 	if (head)
 	{
 		node *temp = head;
-		while (temp->next)
+		while (temp)
 		{
 			cout << temp->data << endl;
+			temp = temp->next;
 		}
 	}
 }
