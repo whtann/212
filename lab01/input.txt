@@ -1,0 +1,16 @@
+remove 2
+remove 3
+insert 5
+print
+remove 4
+remove 5
+insert 6
+insert 6
+print
+insert 9
+remove 10
+remove 6
+insert 7
+insert 6
+remove 7
+print

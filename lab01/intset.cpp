@@ -30,7 +30,7 @@ bool Intset::find(int key)
 {
 	node *temp = head;
 	if (head) {
-		while (temp->next)
+		while (temp)
 		{
 			if (temp->data == key)
 			{
@@ -100,27 +100,35 @@ void Intset::remove(int key)
 	//if key is = to head node delete head node
 	if (head->data == key)
 	{
-		head = head->next;
-		delete temp;
+		if (head->next) {
+			head = head->next;
+			delete temp;
+		}
+		else
+		{
+			delete temp;
+			head = NULL;
+		}
 	}
 	else
 	{
-		while (temp->next)
+		while (temp)
 		{
 			temp = temp2->next;
 			//if the node is in the middle of the list, delete it
-			if (temp2->data == key)
+			if (temp->data == key)
 			{
-				temp->next = temp2->next;
-				delete temp2;
+				temp2->next = temp->next;
+				delete temp;
 				break;
 			}
 			//if the node is at the end of the list, delete it
-			if (!temp2->next)
+			if (!temp->next)
 			{
-				delete temp2;
+				delete temp;
 				break;
 			}
+			temp2 = temp;
 		}
 	}
 }
