@@ -1,16 +1,13 @@
-remove 2
-remove 3
 insert 5
-print
-remove 4
-remove 5
+insert 8
+insert 10
 insert 6
-insert 6
-print
-insert 9
+insert 7
+insert 0
+insert 11
+insert 5
 remove 10
 remove 6
-insert 7
-insert 6
-remove 7
+remove 0
+remove 11
 print
