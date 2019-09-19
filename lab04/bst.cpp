@@ -79,8 +79,8 @@ Node *remove(Node *T, int k)
   assert (find(T,k) != NULL);
 
   // get to node with recursion
-  if (k < T->key) { T->left = remove(T->left, k); }
-  else if (k > T->key) { T->right = remove(T->right, k); }
+  if (k < T->key) { T->left = remove(T->left, k); T->size--; }
+  else if (k > T->key) { T->right = remove(T->right, k); T->size--; }
 
   // once on the node delete it
   else
